@@ -83,11 +83,11 @@ const Index: FC<DetailsProps> = ({ contactId } ) => {
             <ContactNameContainer>
                 <FormGroup>
                     <Label>First Name</Label>
-                    <Input value={firstName} onChange={onFirstNameChange} />
+                    <Input value={firstName} onChange={onFirstNameChange} required/>
                 </FormGroup>
                 <FormGroup>
                     <Label>Last Name</Label>
-                    <Input value={lastName} onChange={onLastNameChange} />
+                    <Input value={lastName} onChange={onLastNameChange} required/>
                 </FormGroup>
             </ContactNameContainer>
             <ContactEmailContainer>
