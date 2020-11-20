@@ -55,20 +55,19 @@ const Index: FC<DetailsProps> = ({ contactId } ) => {
     }
 
     // Update the contact
-    const updateContact = async (): Promise<void> => {
-
+    const updateContact = async (e: FormEvent<HTMLFormElement>): Promise<any> => {
+        e.preventDefault()
         const data = { firstName, lastName, emails }
 
-        const response = await fetch(`https://avb-contacts-api.herokuapp.com/contacts/${contactId}`, {
+        await fetch(`https://avb-contacts-api.herokuapp.com/contacts/${contactId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        }).then((response) => console.log(response)).catch(error => console.error(error))
+        }).catch(error => console.error(error))
 
-        console.log(response)
-
+        window.location.href = "/"
     }
 
     // Delete the contact
