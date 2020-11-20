@@ -1,6 +1,7 @@
+import { IoMdRemoveCircle, IoMdAddCircle } from 'react-icons/io'
 import styled from 'styled-components'
 
-export const ContactDetailsContainer = styled.div`
+export const ContactDetailsContainer = styled.form`
     position: relative;
     width: 80vw;
 
@@ -25,9 +26,7 @@ export const ContactNameContainer = styled.div`
     @media screen and (max-width: 768px) {
         flex-direction: column;
         align-items: center;
-    }
-    
-    /* border: 1px solid black; */
+    }   
 `
 
 export const FormGroup = styled.div`
@@ -64,12 +63,23 @@ export const ContactEmailContainer = styled.div`
         top: 250px;
         align-items: center;
     }
-
-    /* border: 1px solid black; */
 `
 
 export const EmailList = styled.ul`
     list-style: none;
+`
+
+export const EmailInput = styled.input`
+    height: 36px;
+    width: 345px;
+    background-color: inherit;
+    box-sizing: border-box;
+    font-size: 16px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #D7E7FF;
+    outline: none;
 `
 
 export const EmailItem = styled.li`
@@ -80,28 +90,44 @@ export const EmailItem = styled.li`
     column-gap: 1rem;
 `
 export const Email = styled.p`
+    padding: .5rem 0;
+    width: 250px;
 `
 
-export const RemoveEmailIcon = styled.i`
+export const RemoveEmailButton = styled.button`
+    outline: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+`
 
+export const RemoveEmailIcon = styled(IoMdRemoveCircle)`
+    color: #FF5757;
+    font-size: 2rem;
+    margin-top: 4px;
 `
 
 export const AddEmailWrap = styled.div`
+    margin-top: 1rem; 
     display: flex;
     flex-direction: row;
     column-gap: 1rem;
 `
 
-export const AddEmailIcon = styled.i`
-
+export const AddEmailIcon = styled(IoMdAddCircle)`
+    color: #579AFF;
+    font-size: 2rem;
 `
 
 export const AddEmailBtn = styled.button`
+    display: flex;
+    column-gap: .5rem;
+    color: #579AFF;
+    font-size: 18px;
+    align-items: center;
     background-color: transparent;
     outline: none;
     border: none;
-    color: #579AFF;
-    font-size: 18px;
     &:hover {
         cursor: pointer;
     }
@@ -137,6 +163,9 @@ export const CancelBtn = styled.button`
     border: 1px solid #579AFF;
     box-sizing: border-box;
     outline: none;
+    a {
+        text-decoration: none;
+    }
 
     &:hover {
         background: #989a9c;

@@ -47,10 +47,7 @@ const Index: FC = () => {
             <ContactsContainer>
                 <ContactsTopSection>
                     <Title>Contacts</Title>
-                    <AddContactIcon onClick={() => handleAdding()}>
-                        <div className="rectangle1"></div>
-                        <div className="rectangle2"></div>
-                    </AddContactIcon>
+                    <AddContactIcon onClick={handleAdding} />
                 </ContactsTopSection>
                 <ContactsListContainer>
                     {

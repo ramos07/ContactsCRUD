@@ -88,11 +88,13 @@ const Index: FC = () => {
                 </FormGroup>
                 <AddEmailWrap>
                     <EmailInput placeholder="Email" value={emailToAdd} onChange={handleAddEmailChange} />
-                    <AddEmailIcon />
-                    <AddEmailBtn onClick={handleAddEmail}>add email</AddEmailBtn>
+                    <AddEmailBtn onClick={handleAddEmail}>
+                        <AddEmailIcon />
+                        add email
+                    </AddEmailBtn>
                 </AddEmailWrap>
             </ContactEmailContainer>
-            <CancelBtn>Cancel</CancelBtn>
+            <CancelBtn><a href="/">Cancel</a></CancelBtn>
             <SaveBtn type="submit">Save</SaveBtn>
         </AddContactContainer>
     )

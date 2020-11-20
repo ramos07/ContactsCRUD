@@ -126,11 +126,14 @@ export const AddEmailIcon = styled(IoMdAddCircle)`
 `
 
 export const AddEmailBtn = styled.button`
+    display: flex;
+    column-gap: .5rem;
+    color: #579AFF;
+    font-size: 18px;
+    align-items: center;
     background-color: transparent;
     outline: none;
     border: none;
-    color: #579AFF;
-    font-size: 18px;
     &:hover {
         cursor: pointer;
     }
@@ -148,6 +151,10 @@ export const CancelBtn = styled.button`
     border: 1px solid #579AFF;
     box-sizing: border-box;
     outline: none;
+
+    a {
+        text-decoration: none;
+    }
 
     &:hover {
         background: #989a9c;
