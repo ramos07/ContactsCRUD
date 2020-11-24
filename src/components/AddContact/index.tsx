@@ -8,21 +8,25 @@ const Index: FC = () => {
     const [emails, setEmails] = useState<string[]>([])
     const [emailToAdd, setEmailToAdd] = useState<string>('')
 
+    // Handle first name input change
     const onFirstNameChange = (e: FormEvent<HTMLInputElement>) => {
         e.preventDefault()
         setFirstName(e.currentTarget.value)
     }
     
+    // Handle last name input change
     const onLastNameChange = (e: FormEvent<HTMLInputElement>) => {
         e.preventDefault()
         setLastName(e.currentTarget.value)
     }
 
+    // Handle email input change
     const handleAddEmailChange = (e: FormEvent<HTMLInputElement>) => {
         e.preventDefault()
         setEmailToAdd(e.currentTarget.value)
     }
 
+    // Add an email 
     const handleAddEmail = (e: FormEvent<HTMLButtonElement>) => {
         e.preventDefault()
         if(emailToAdd !== ""){
@@ -31,29 +35,42 @@ const Index: FC = () => {
         }
     }
 
+    // Remove an email
     const handleRemoveEmail = (email: string) => {
         const updatedEmailList = emails.filter(element => element !== email)
         setEmails(updatedEmailList)
     }
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+    // Add new contact
+    const handleSubmit = async (e:FormEvent): Promise<void> => {
         e.preventDefault()
         const data = {
             firstName,
             lastName,
             emails
         }
+        interface Contact {
+            firstName: string,
+            lastName: string,
+        }
 
-        const { statusText } = await fetch('https://avb-contacts-api.herokuapp.com/contacts', {
+        const contact: Contact = await fetch('https://avb-contacts-api.herokuapp.com/contacts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
+        }).then(res => res.json()).catch(error => {
+            console.error(error.message)
         })
 
-        if(statusText.toLowerCase() === "created"){
-            alert("successfully added new contact")
+        if(typeof contact.firstName !== 'undefined'){
+            console.log(contact)
+            let{ firstName, lastName } = contact
+            alert(`Successfully added ${firstName} ${lastName} as a contact`)
+            window.location.href = '/'
+        }else{
+            alert('There was an error saving the contact.')
         }
     }
     

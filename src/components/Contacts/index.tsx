@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-import { ContactsContainer, ContactsListContainer, ContactName, ContactsTopSection, Title, AddContactIcon
- } from "./ContactsComponents";
+import { ContactsContainer, ContactsListContainer, ContactName, ContactsTopSection, Title, AddContactIcon } from "./ContactsComponents";
 
 import ContactDetails from '../ContactDetails'
 import AddContact from '../AddContact'
@@ -26,7 +25,7 @@ const Index: FC = () => {
 
     // Fetch the contacts from the API
     const fetchContacts = async (): Promise<any> => {
-        const { contacts } = await fetch('https://avb-contacts-api.herokuapp.com/contacts/paginated?page=1').then(res => res.json())
+        const { contacts } = await fetch('https://avb-contacts-api.herokuapp.com/contacts/paginated?page=1&itemsPerPage=100').then(res => res.json())
         setContacts(contacts)
     }
 
@@ -51,9 +50,13 @@ const Index: FC = () => {
                 </ContactsTopSection>
                 <ContactsListContainer>
                     {
-                        contacts.sort((a,b) => (a.lastName > b.lastName) ? 1 : ((b.lastName > a.lastName) ? -1 : 0)).map(contact => (
-                            <ContactName key={contact.id} onClick={() => handleEditing(contact.id)}>{contact.lastName + " " + contact.firstName}</ContactName>
-                        ))
+                        contacts.length > 0 ? (
+                            contacts.sort((a,b) => (a.lastName > b.lastName) ? 1 : ((b.lastName > a.lastName) ? -1 : 0)).map(contact => (
+                                <ContactName key={contact.id} onClick={() => handleEditing(contact.id)}>{contact.lastName + " " + contact.firstName}</ContactName>
+                            ))
+                        ) : (
+                            null
+                        )
                     }
                 </ContactsListContainer>
             </ContactsContainer>
